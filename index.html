@@ -903,8 +903,15 @@
 
   .mentors {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--s3);
+  }
+
+  .mentor-body {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin-top: 6px;
   }
 
   .mentor {
@@ -2107,7 +2114,7 @@
       <span class="num">01</span>
       <span class="name">Team</span>
       <span class="fill"></span>
-      <span class="tag">06 MEMBERS &middot; 03 MENTORS</span>
+      <span class="tag">06 MEMBERS &middot; 02 MENTORS</span>
     </div>
 
     <div class="board-head">
@@ -2214,21 +2221,24 @@
     <div class="mentors">
       <div class="mentor">
         <span class="mno">MENTOR 01</span>
-        <span class="mname">[MENTOR 01 NAME]</span>
-        <span class="marea">[GUIDANCE / SPECIALIZATION — e.g. Power systems &amp; protection]</span>
-        <span class="lbl">[DESIGNATION / DEPARTMENT]</span>
+        <div class="mentor-body">
+          <div class="portrait"><img src="Mentor1.png" alt="Muthusamy K" width="620" height="620" loading="lazy"></div>
+          <div class="fields">
+            <div class="field"><span class="lbl">Name</span><span class="v name">Muthusamy K</span></div>
+            <div class="field"><span class="lbl">Role</span><span class="v">Faculty Mentor</span></div>
+          </div>
+        </div>
       </div>
+
       <div class="mentor">
         <span class="mno">MENTOR 02</span>
-        <span class="mname">[MENTOR 02 NAME]</span>
-        <span class="marea">[GUIDANCE / SPECIALIZATION — e.g. Embedded systems &amp; instrumentation]</span>
-        <span class="lbl">[DESIGNATION / DEPARTMENT]</span>
-      </div>
-      <div class="mentor">
-        <span class="mno">MENTOR 03</span>
-        <span class="mname">[MENTOR 03 NAME]</span>
-        <span class="marea">[GUIDANCE / SPECIALIZATION — e.g. Signal processing &amp; testing standards]</span>
-        <span class="lbl">[DESIGNATION / DEPARTMENT]</span>
+        <div class="mentor-body">
+          <div class="portrait"><img src="Mentor2.png" alt="Gajendran Parthasarathi" width="620" height="620" loading="lazy"></div>
+          <div class="fields">
+            <div class="field"><span class="lbl">Name</span><span class="v name">Gajendran Parthasarathi</span></div>
+            <div class="field"><span class="lbl">Role</span><span class="v">Faculty Mentor</span></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
