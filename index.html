@@ -2342,62 +2342,52 @@
           <div class="node key result"><span class="dot"></span>Test Result<span class="tag">PASS / FAIL</span></div>
         </div>
 
+        <!-- AHTA Embedded Sub-Engine -->
+        <div class="ahta-block" style="margin-top:var(--s3); background:var(--surface); border:1px solid var(--line); border-radius:var(--r-lg); overflow:hidden;">
+          <div class="ahta-top" style="padding: 12px 18px;">
+            <h4 style="font-size:18px;">AHTA</h4>
+            <span class="exp">Adaptive Hybrid Transient Analysis Engine</span>
+          </div>
+          <div class="ahta-in" style="padding: 16px 18px;">
+            <p style="font-size:13px; margin-bottom:12px; color:var(--ink-2);">Combines periodic AC signal decomposition, reference waveform reconstruction, and transient wavelet analysis with direct electrical measurements for comprehensive MCB performance evaluation.</p>
+
+            <div class="branches" style="gap:10px;">
+              <div class="branch" style="padding:12px;">
+                <span class="lbl lbl-b">Periodic</span>
+                <h5 style="font-size:14px; margin:4px 0;">Fourier Series (FFS)</h5>
+                <p style="font-size:11.5px;">Extracts fundamental 50 Hz &amp; harmonic spectrum to evaluate periodic AC behavior.</p>
+              </div>
+              <div class="branch" style="padding:12px;">
+                <span class="lbl lbl-b">Reference</span>
+                <h5 style="font-size:14px; margin:4px 0;">Inverse Fourier (IFFS)</h5>
+                <p style="font-size:11.5px;">Reconstructs pure periodic baseline to compare actual waveform deviations against expected.</p>
+              </div>
+              <div class="branch" style="padding:12px;">
+                <span class="lbl lbl-b">Transient</span>
+                <h5 style="font-size:14px; margin:4px 0;">Discrete Wavelet (DWT)</h5>
+                <p style="font-size:11.5px;">Isolates time-localized transient events: fault initiation, peak surge, and arc collapse.</p>
+              </div>
+            </div>
+
+            <div class="fuse" style="margin-top:12px; padding:10px 14px; font-size:11px;">
+              <b>FEATURE FUSION &rarr;</b>
+              <span>I<sub>p</sub></span><span>I<sub>RMS</sub></span><span>I&sup2;t</span><span>dI/dt</span><span>t<sub>trip</sub></span><span>PF</span>
+              <b style="margin-left:auto">&rarr; <span style="color:#8FD6A8">IEC 60898-1 PASS/FAIL</span></b>
+            </div>
+          </div>
+        </div>
+
         <div class="spec">
-          <div class="spec-row"><span class="k">PROTOTYPE SUPPLY</span><span class="v">24 V AC, current-limited</span>
-          </div>
+          <div class="spec-row"><span class="k">PROTOTYPE SUPPLY</span><span class="v">24 V AC, current-limited</span></div>
           <div class="spec-row"><span class="k">PROTOTYPE FAULT</span><span class="v">15 A class, isolated</span></div>
-          <div class="spec-row"><span class="k">INDUSTRIAL TARGET</span><span class="v">10 kA class (per problem
-              statement)</span></div>
-          <div class="spec-row"><span class="k">CONTROLLER</span><span class="v">STM32F401RE</span></div>
-          <div class="spec-row"><span class="k">MEASURED</span><span class="v">I<sub>p</sub> &middot; I<sub>RMS</sub>
-              &middot; I&sup2;t &middot; dI/dt &middot; t<sub>trip</sub> &middot; PF</span></div>
-          <div class="spec-row"><span class="k">MODEL / VALIDATION</span><span class="v">MATLAB &amp; Simulink &rarr;
-              Embedded C</span></div>
+          <div class="spec-row"><span class="k">INDUSTRIAL TARGET</span><span class="v">10 kA class (per problem statement)</span></div>
+          <div class="spec-row"><span class="k">CONTROLLER</span><span class="v">STM32F401RE Nucleo-64 &amp; PLC</span></div>
+          <div class="spec-row"><span class="k">SENSORS</span><span class="v">WCS1700 Hall-effect &amp; Isolated Voltage</span></div>
+          <div class="spec-row"><span class="k">MEASURED</span><span class="v">I<sub>p</sub> &middot; I<sub>RMS</sub> &middot; I&sup2;t &middot; dI/dt &middot; t<sub>trip</sub> &middot; PF</span></div>
+          <div class="spec-row"><span class="k">DEVELOPMENT</span><span class="v">MATLAB &amp; Simulink &rarr; Embedded C</span></div>
         </div>
 
-        <div class="ohm">V = I&middot;R <span aria-hidden="true">&rarr;</span> <span style="color:var(--blue)">the whole
-            machine, eventually</span></div>
-      </div>
-    </div>
-
-    <div class="ahta">
-      <div class="ahta-top">
-        <h4>AHTA</h4>
-        <span class="exp">Adaptive Hybrid Transient Analysis</span>
-      </div>
-      <div class="ahta-in">
-        <p>The captured waveform is split into what repeats and what happens once. Each path is analysed with the tool
-          suited to it, then the features are fused into a single fault signature that describes how the breaker
-          actually interrupted.</p>
-
-        <div class="branches">
-          <div class="branch">
-            <span class="lbl lbl-b">Periodic</span>
-            <h5>Fourier Series <span class="lbl" style="font-size:9px; opacity:.5;">50 Hz</span></h5>
-            <p>Describes the fundamental and its harmonic structure &mdash; what frequency content the waveform carries.
-            </p>
-          </div>
-          <div class="branch">
-            <span class="lbl lbl-b">Reference</span>
-            <h5>IFFS</h5>
-            <p>Reconstructs a periodic reference from the coefficients, so the measured trace can be compared against
-              expected behaviour.</p>
-          </div>
-          <div class="branch">
-            <span class="lbl lbl-b">Transient</span>
-            <h5>DWT</h5>
-            <p>Localises the fast events in time &mdash; when the surge began, when the current collapsed, how strong
-              each was.</p>
-          </div>
-        </div>
-
-        <div class="fuse">
-          <b>FAULT SIGNATURE &rarr;</b>
-          <span>I<sub>p</sub></span><span>I<sub>RMS</sub></span><span>I&sup2;t</span><span>dI/dt</span><span>t<sub>trip</sub></span><span>PF</span>
-          <b style="margin-left:auto">&rarr; <span style="color:#8FD6A8">PASS</span> / FAIL</b>
-        </div>
-
-        <div class="warn"><span aria-hidden="true">&#9888;</span> DO NOT TOUCH &mdash; SYSTEM UNDER TEST</div>
+        <div class="ohm">V = I&middot;R <span aria-hidden="true">&rarr;</span> <span style="color:var(--blue)">Automated fault control &amp; hybrid analysis</span></div>
       </div>
     </div>
   </section>
