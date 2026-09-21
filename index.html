@@ -151,7 +151,7 @@
    ========================================================================== */
   html.intro-lock,
   html.intro-lock body {
-    overflow: hidden;
+    overflow-x: hidden;
   }
 
   .intro {
@@ -2873,12 +2873,12 @@
     -------------------------------------------- */
     (function () {
       var intro = document.getElementById('intro');
+      var introSkip = document.getElementById('introSkip');
       if (!intro) return;
       if (reduce) { intro.remove(); return; }
 
       var root = document.documentElement;
       var timer, gone = false;
-      root.classList.add('intro-lock');
 
       function dismiss() {
         if (gone) return;
@@ -2889,18 +2889,23 @@
         window.removeEventListener('wheel', dismiss);
         window.removeEventListener('touchmove', dismiss);
         window.removeEventListener('keydown', onKey);
-        setTimeout(function () { if (intro.parentNode) intro.remove(); }, 1000);
+        setTimeout(function () { if (intro && intro.parentNode) intro.remove(); }, 600);
       }
-      function onKey(e) { if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') dismiss(); }
 
-      timer = setTimeout(dismiss, 1950);
+      function onKey(e) { dismiss(); }
+
+      timer = setTimeout(dismiss, 1000);
       intro.addEventListener('click', dismiss);
+      if (introSkip) introSkip.addEventListener('click', function(e) {
+        e.stopPropagation();
+        dismiss();
+      });
       window.addEventListener('wheel', dismiss, { passive: true });
       window.addEventListener('touchmove', dismiss, { passive: true });
       window.addEventListener('keydown', onKey);
 
-      /* never strand the viewer behind the card if the image is slow or missing */
-      setTimeout(function () { if (!gone) dismiss(); }, 4500);
+      /* never strand the viewer behind the card */
+      setTimeout(dismiss, 1500);
     })();
 
     /* ---------- navigation ---------- */
