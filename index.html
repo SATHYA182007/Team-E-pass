@@ -1369,6 +1369,201 @@
     font-size: 10px;
     letter-spacing: .09em;
     color: var(--ink-3);
+  /* Horizontal Block Diagram Layout for Solution */
+  .solution-block-wrapper {
+    margin-top: var(--s3);
+    background: var(--surface-2);
+    border: 1px solid var(--blue-soft);
+    border-radius: var(--r-xl);
+    padding: var(--s4);
+    box-shadow: var(--sh-1);
+  }
+
+  .horizontal-block-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 22px 0;
+  }
+
+  .block-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--sh-1);
+    transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+  }
+
+  .block-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sh-2);
+    border-color: var(--blue-soft);
+  }
+
+  .block-card.highlight {
+    background: #0f1c2e;
+    color: #fff;
+    border-color: var(--blue);
+  }
+
+  .block-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .block-card.highlight .block-header {
+    border-bottom-color: rgba(255,255,255,0.15);
+  }
+
+  .block-step {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9.5px;
+    letter-spacing: .12em;
+    font-weight: 600;
+    color: var(--orange);
+    text-transform: uppercase;
+  }
+
+  .block-card.highlight .block-step {
+    color: var(--orange-br);
+  }
+
+  .block-tag {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 8.5px;
+    padding: 2px 7px;
+    border-radius: var(--r-pill);
+    background: var(--blue-soft);
+    color: var(--blue);
+    letter-spacing: .08em;
+  }
+
+  .block-card.highlight .block-tag {
+    background: rgba(255,255,255,0.15);
+    color: #8FD6A8;
+  }
+
+  .block-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+  }
+
+  .block-card.highlight .block-title {
+    color: #fff;
+  }
+
+  .block-sub {
+    font-size: 11.5px;
+    color: var(--ink-3);
+    margin-bottom: 12px;
+  }
+
+  .block-card.highlight .block-sub {
+    color: rgba(255,255,255,0.7);
+  }
+
+  .block-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 12.5px;
+    color: var(--ink-2);
+  }
+
+  .block-card.highlight .block-list {
+    color: rgba(255,255,255,0.9);
+  }
+
+  .block-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    line-height: 1.35;
+  }
+
+  .block-list-item::before {
+    content: "▸";
+    color: var(--blue);
+    font-weight: bold;
+    font-size: 12px;
+  }
+
+  .block-card.highlight .block-list-item::before {
+    color: var(--orange-br);
+  }
+
+  .block-footer-badge {
+    margin-top: auto;
+    padding-top: 12px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--blue);
+    letter-spacing: .06em;
+  }
+
+  .block-card.highlight .block-footer-badge {
+    color: #8FD6A8;
+  }
+
+  .horizontal-spec-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+
+  .spec-box {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    padding: 10px 14px;
+  }
+
+  .spec-box .k {
+    display: block;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9px;
+    letter-spacing: .11em;
+    color: var(--ink-3);
+    margin-bottom: 3px;
+  }
+
+  .spec-box .v {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--navy);
+  }
+
+  @media (max-width: 992px) {
+    .horizontal-block-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .horizontal-spec-bar {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .horizontal-block-grid {
+      grid-template-columns: 1fr;
+    }
+    .horizontal-spec-bar {
+      grid-template-columns: 1fr;
+    }
   }
 
   /* ==========================================================================
@@ -2291,103 +2486,126 @@
         from a single operator command.</p>
     </div>
 
-    <div class="panels">
+    <!-- 1. The Problem Card -->
+    <div class="panel problem" style="margin-bottom: var(--s3);">
+      <div class="panel-head">
+        <span class="eyebrow">CURRENT PRACTICE</span>
+        <h3>The Problem</h3>
+        <div class="sub">Conventional / manually assisted testing</div>
+      </div>
+      <p class="body">MCB breaking-capacity testing as per IEC 60898-1:2015 requires controlled generation of severe short-circuit conditions with precise voltage, current, impedance (R and X<sub>L</sub>), and power factor values across SP, SPN, DP, TP, and FP ratings (0.5 A to 63 A).</p>
 
-      <div class="panel problem">
-        <div class="panel-head">
-          <span class="eyebrow">CURRENT PRACTICE</span>
-          <h3>The Problem</h3>
-          <div class="sub">Conventional / manually assisted testing</div>
-        </div>
-        <p class="body">MCB breaking-capacity testing as per IEC 60898-1:2015 requires controlled generation of severe short-circuit conditions with precise voltage, current, impedance (R and X<sub>L</sub>), and power factor values across SP, SPN, DP, TP, and FP ratings (0.5 A to 63 A).</p>
+      <div class="markers" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); display: grid;">
+        <div class="marker"><span class="mk">MANUAL CONFIGURATION</span><span class="txt">Existing manual methods face challenges in precisely configuring R and X<sub>L</sub> circuit combinations, increasing test time and affecting repeatability.</span></div>
+        <div class="marker crit"><span class="mk">HIGH SAFETY HAZARDS</span><span class="txt">Generation of high fault currents up to 10,000 A introduces severe safety risks to personnel and test equipment when an operator is in the loop.</span></div>
+        <div class="marker"><span class="mk">MULTI-RATING SUPPORT</span><span class="txt">Supporting diverse MCB configurations (SP, SPN, DP, TP, FP) from 0.5 A to 63 A makes manual re-configuration complex and error-prone.</span></div>
+        <div class="marker"><span class="mk">WAVEFORM ANALYSIS GAP</span><span class="txt">Detailed waveform and transient analysis is handled as a separate diagnostic step rather than integrated into the automated test workflow.</span></div>
+        <div class="marker"><span class="mk">DIGITAL TRACEABILITY</span><span class="txt">Maintaining complete digital records of configuration, waveforms, parameters, and daily/weekly test history requires an integrated digital platform.</span></div>
+      </div>
+    </div>
 
-        <div class="markers">
-          <div class="marker"><span class="mk">MANUAL CONFIGURATION</span><span class="txt">Existing manual methods face challenges in precisely configuring R and X<sub>L</sub> circuit combinations, increasing test time and affecting repeatability.</span></div>
-          <div class="marker crit"><span class="mk">HIGH SAFETY HAZARDS</span><span class="txt">Generation of high fault currents up to 10,000 A introduces severe safety risks to personnel and test equipment when an operator is in the loop.</span></div>
-          <div class="marker"><span class="mk">MULTI-RATING SUPPORT</span><span class="txt">Supporting diverse MCB configurations (SP, SPN, DP, TP, FP) from 0.5 A to 63 A makes manual re-configuration complex and error-prone.</span></div>
-          <div class="marker"><span class="mk">WAVEFORM ANALYSIS GAP</span><span class="txt">Detailed waveform and transient analysis is handled as a separate diagnostic step rather than integrated into the automated test workflow.</span></div>
-          <div class="marker"><span class="mk">DIGITAL TRACEABILITY</span><span class="txt">Maintaining complete digital records of configuration, waveforms, parameters, and daily/weekly test history requires an integrated digital platform.</span></div>
+    <!-- 2. Our Solution - Wide Horizontal Block Diagram Section -->
+    <div class="solution-block-wrapper">
+      <div class="panel-head" style="margin-bottom: 14px;">
+        <span class="eyebrow">OUR SOLUTION</span>
+        <h3>E&#8209;PASS System Architecture</h3>
+        <div class="sub">Automated MCB Short-Circuit Test &amp; Hybrid Waveform Analysis Platform</div>
+      </div>
+      <p class="body" style="max-width: 90ch; margin-bottom: 20px;">
+        One operator command initiates the full automated testing sequence. The architecture is organized into 4 connected functional blocks: from HMI parameter configuration and controlled fault generation to high-speed signal capture and AHTA hybrid waveform processing.
+      </p>
+
+      <!-- 4 Horizontal Stage Blocks -->
+      <div class="horizontal-block-grid">
+
+        <!-- BLOCK 01 -->
+        <div class="block-card">
+          <div class="block-header">
+            <span class="block-step">BLOCK 01</span>
+            <span class="block-tag">INPUT &amp; SAFETY</span>
+          </div>
+          <div class="block-title">Control &amp; HMI</div>
+          <div class="block-sub">System interface &amp; safety interlocks</div>
+          <div class="block-list">
+            <div class="block-list-item"><b>Local Web HMI:</b> Parameter entry (MCB type, rating, target I, V, PF).</div>
+            <div class="block-list-item"><b>R &ndash; X<sub>L</sub> Calculator:</b> Computes Z = V/I, R = Z&middot;PF, X<sub>L</sub> = Z&radic;(1-PF&sup2;).</div>
+            <div class="block-list-item"><b>PLC Safety Layer:</b> Manages safety interlocks, enclosure check, &amp; E-Stop.</div>
+            <div class="block-list-item"><b>STM32 Controller:</b> High-speed trigger &amp; test sequence control.</div>
+          </div>
+          <div class="block-footer-badge">&rarr; TRIGGERS FAULT STAGE</div>
         </div>
+
+        <!-- BLOCK 02 -->
+        <div class="block-card">
+          <div class="block-header">
+            <span class="block-step">BLOCK 02</span>
+            <span class="block-tag">POWER CIRCUIT</span>
+          </div>
+          <div class="block-title">Power Stage</div>
+          <div class="block-sub">Impedance &amp; fault switching</div>
+          <div class="block-list">
+            <div class="block-list-item"><b>Isolated AC Source:</b> Current-limited supply for safe validation.</div>
+            <div class="block-list-item"><b>Selectable R &ndash; X<sub>L</sub> Bank:</b> Automated resistor &amp; inductor step selection.</div>
+            <div class="block-list-item"><b>Schneider Contactor:</b> LC1D18B7 for controlled fault initiation.</div>
+            <div class="block-list-item"><b>Test Fixture:</b> Universal mounting for SP, DP, TP, FP MCBs (0.5A&ndash;63A).</div>
+          </div>
+          <div class="block-footer-badge">&rarr; GENERATES WAVEFORM</div>
+        </div>
+
+        <!-- BLOCK 03 -->
+        <div class="block-card">
+          <div class="block-header">
+            <span class="block-step">BLOCK 03</span>
+            <span class="block-tag">HIGH-SPEED SAMPLING</span>
+          </div>
+          <div class="block-title">Acquisition</div>
+          <div class="block-sub">Sensing &amp; DMA transfer</div>
+          <div class="block-list">
+            <div class="block-list-item"><b>WCS1700 Sensor:</b> Hall-effect current waveform sensing.</div>
+            <div class="block-list-item"><b>Voltage Sensor:</b> Isolated voltage waveform conditioning.</div>
+            <div class="block-list-item"><b>Butterworth Filter:</b> High-frequency noise suppression.</div>
+            <div class="block-list-item"><b>STM32 ADC + DMA:</b> Continuous zero-CPU circular memory buffer.</div>
+          </div>
+          <div class="block-footer-badge">&rarr; FEEDS AHTA ENGINE</div>
+        </div>
+
+        <!-- BLOCK 04 -->
+        <div class="block-card highlight">
+          <div class="block-header">
+            <span class="block-step">BLOCK 04</span>
+            <span class="block-tag">HYBRID ANALYSIS</span>
+          </div>
+          <div class="block-title">AHTA Engine</div>
+          <div class="block-sub">Feature fusion &amp; digital report</div>
+          <div class="block-list">
+            <div class="block-list-item"><b>Fourier Series (FFS):</b> 50 Hz fundamental &amp; harmonic spectrum.</div>
+            <div class="block-list-item"><b>Inverse Fourier (IFFS):</b> Baseline reference waveform reconstruction.</div>
+            <div class="block-list-item"><b>Wavelet (DWT):</b> Transient localization (inception, peak, arc collapse).</div>
+            <div class="block-list-item"><b>Feature Fusion:</b> I<sub>p</sub>, I<sub>RMS</sub>, I&sup2;t, dI/dt, t<sub>trip</sub>, PF evaluation.</div>
+          </div>
+          <div class="block-footer-badge">IEC 60898-1 &rarr; PASS / FAIL</div>
+        </div>
+
       </div>
 
-      <div class="panel solution">
-        <div class="panel-head">
-          <span class="eyebrow">OUR SOLUTION</span>
-          <h3>E&#8209;PASS</h3>
-          <div class="sub">Automated MCB Short-Circuit Test &amp; Analysis Platform</div>
+      <!-- Horizontal Spec Summary Bar -->
+      <div class="horizontal-spec-bar">
+        <div class="spec-box">
+          <span class="k">ELECTRICAL SOURCE</span>
+          <span class="v">24 V AC Isolated Bench Source (Current-Limited)</span>
         </div>
-        <p class="body">One operator command runs the whole sequence: the controller prepares the impedance-limited
-          fault path, closes the contactor, captures current and voltage at high speed, and analyses the waveform before
-          the result reaches the screen.</p>
-
-        <div class="chain sol" aria-label="E-PASS system flow">
-          <div class="node"><span class="dot"></span>User<span class="tag">OPERATOR</span></div>
-          <div class="link"><span class="pip" style="animation-delay:-.3s"></span></div>
-          <div class="node key"><span class="dot"></span>Local Web HMI<span class="tag">CONFIG</span></div>
-          <div class="link"><span class="pip" style="animation-delay:0s"></span></div>
-          <div class="node key"><span class="dot"></span>STM32F401RE<span class="tag">CONTROLLER</span></div>
-          <div class="link"><span class="pip" style="animation-delay:.3s"></span></div>
-          <div class="node"><span class="dot"></span>R + X<sub>L</sub><span class="tag">PF SET</span></div>
-          <div class="link"><span class="pip" style="animation-delay:.6s"></span></div>
-          <div class="node"><span class="dot"></span>Fault Contactor<span class="tag">CLOSE</span></div>
-          <div class="link"><span class="pip" style="animation-delay:.9s"></span></div>
-          <div class="node fault"><span class="dot"></span>MCB Under Test<span class="tag">FAULT</span></div>
-          <div class="link"><span class="pip" style="animation-delay:1.2s"></span></div>
-          <div class="node"><span class="dot"></span>Current / Voltage<span class="tag">WCS1700</span></div>
-          <div class="link"><span class="pip" style="animation-delay:1.5s"></span></div>
-          <div class="node"><span class="dot"></span>ADC + DMA<span class="tag">CAPTURE</span></div>
-          <div class="link"><span class="pip" style="animation-delay:1.8s"></span></div>
-          <div class="node key"><span class="dot"></span>AHTA<span class="tag">ANALYSIS</span></div>
-          <div class="link"><span class="pip" style="animation-delay:2.1s"></span></div>
-          <div class="node key result"><span class="dot"></span>Test Result<span class="tag">PASS / FAIL</span></div>
+        <div class="spec-box">
+          <span class="k">SWITCHING &amp; CONTROL</span>
+          <span class="v">Schneider LC1D18B7 Contactor &bull; STM32F401RE + PLC</span>
         </div>
-
-        <!-- AHTA Embedded Sub-Engine -->
-        <div class="ahta-block" style="margin-top:var(--s3); background:var(--surface); border:1px solid var(--line); border-radius:var(--r-lg); overflow:hidden;">
-          <div class="ahta-top" style="padding: 12px 18px;">
-            <h4 style="font-size:18px;">AHTA</h4>
-            <span class="exp">Adaptive Hybrid Transient Analysis Engine</span>
-          </div>
-          <div class="ahta-in" style="padding: 16px 18px;">
-            <p style="font-size:13px; margin-bottom:12px; color:var(--ink-2);">Combines periodic AC signal decomposition, reference waveform reconstruction, and transient wavelet analysis with direct electrical measurements for comprehensive MCB performance evaluation.</p>
-
-            <div class="branches" style="gap:10px;">
-              <div class="branch" style="padding:12px;">
-                <span class="lbl lbl-b">Periodic</span>
-                <h5 style="font-size:14px; margin:4px 0;">Fourier Series (FFS)</h5>
-                <p style="font-size:11.5px;">Extracts fundamental 50 Hz &amp; harmonic spectrum to evaluate periodic AC behavior.</p>
-              </div>
-              <div class="branch" style="padding:12px;">
-                <span class="lbl lbl-b">Reference</span>
-                <h5 style="font-size:14px; margin:4px 0;">Inverse Fourier (IFFS)</h5>
-                <p style="font-size:11.5px;">Reconstructs pure periodic baseline to compare actual waveform deviations against expected.</p>
-              </div>
-              <div class="branch" style="padding:12px;">
-                <span class="lbl lbl-b">Transient</span>
-                <h5 style="font-size:14px; margin:4px 0;">Discrete Wavelet (DWT)</h5>
-                <p style="font-size:11.5px;">Isolates time-localized transient events: fault initiation, peak surge, and arc collapse.</p>
-              </div>
-            </div>
-
-            <div class="fuse" style="margin-top:12px; padding:10px 14px; font-size:11px;">
-              <b>FEATURE FUSION &rarr;</b>
-              <span>I<sub>p</sub></span><span>I<sub>RMS</sub></span><span>I&sup2;t</span><span>dI/dt</span><span>t<sub>trip</sub></span><span>PF</span>
-              <b style="margin-left:auto">&rarr; <span style="color:#8FD6A8">IEC 60898-1 PASS/FAIL</span></b>
-            </div>
-          </div>
+        <div class="spec-box">
+          <span class="k">WAVEFORM CAPTURE</span>
+          <span class="v">WCS1700 Hall Sensor &bull; ADC + DMA High-Speed Buffer</span>
         </div>
-
-        <div class="spec">
-          <div class="spec-row"><span class="k">PROTOTYPE SUPPLY</span><span class="v">24 V AC, current-limited</span></div>
-          <div class="spec-row"><span class="k">PROTOTYPE FAULT</span><span class="v">15 A class, isolated</span></div>
-          <div class="spec-row"><span class="k">INDUSTRIAL TARGET</span><span class="v">10 kA class (per problem statement)</span></div>
-          <div class="spec-row"><span class="k">CONTROLLER</span><span class="v">STM32F401RE Nucleo-64 &amp; PLC</span></div>
-          <div class="spec-row"><span class="k">SENSORS</span><span class="v">WCS1700 Hall-effect &amp; Isolated Voltage</span></div>
-          <div class="spec-row"><span class="k">MEASURED</span><span class="v">I<sub>p</sub> &middot; I<sub>RMS</sub> &middot; I&sup2;t &middot; dI/dt &middot; t<sub>trip</sub> &middot; PF</span></div>
-          <div class="spec-row"><span class="k">DEVELOPMENT</span><span class="v">MATLAB &amp; Simulink &rarr; Embedded C</span></div>
+        <div class="spec-box">
+          <span class="k">ANALYSIS &amp; TARGET</span>
+          <span class="v">AHTA Engine &bull; 10 kA Class Target (IEC 60898-1)</span>
         </div>
-
-        <div class="ohm">V = I&middot;R <span aria-hidden="true">&rarr;</span> <span style="color:var(--blue)">Automated fault control &amp; hybrid analysis</span></div>
       </div>
     </div>
   </section>
