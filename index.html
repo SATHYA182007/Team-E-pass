@@ -1569,7 +1569,152 @@
   }
 
   /* ==========================================================================
-   SECTION 03 — MONITOR
+   SECTION 04 — SEE E-PASS WORK SLIDER
+   ========================================================================== */
+  .case-study-slider {
+    position: relative;
+    background: var(--navy);
+    border: 1px solid var(--blue-soft);
+    border-radius: var(--r-xl);
+    overflow: hidden;
+    box-shadow: var(--sh-2);
+    margin-top: var(--s3);
+  }
+
+  .slider-viewport {
+    position: relative;
+    width: 100%;
+    min-height: 480px;
+    background: #09121f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .6s var(--ease), visibility .6s var(--ease), transform .6s var(--ease);
+    transform: scale(0.98);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slide.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+    position: relative;
+  }
+
+  .slide img {
+    max-width: 100%;
+    max-height: 520px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: var(--r-md);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+
+  .slide-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(9,18,31,0.92) 0%, rgba(9,18,31,0.6) 70%, transparent 100%);
+    padding: 24px 30px 18px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: #fff;
+  }
+
+  .slide-num {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: .12em;
+    color: var(--orange-br);
+    background: rgba(255,255,255,0.1);
+    padding: 3px 10px;
+    border-radius: var(--r-pill);
+  }
+
+  .slide-title {
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: .02em;
+    color: #fff;
+  }
+
+  .slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(15, 28, 46, 0.75);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .25s var(--ease), border-color .25s var(--ease), transform .25s var(--ease);
+  }
+
+  .slider-btn:hover {
+    background: var(--blue);
+    border-color: var(--blue-br);
+    transform: translateY(-50%) scale(1.08);
+  }
+
+  .slider-btn.prev {
+    left: 20px;
+  }
+
+  .slider-btn.next {
+    right: 20px;
+  }
+
+  .slider-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 16px;
+    background: #060d17;
+  }
+
+  .slider-dots .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    border: none;
+    cursor: pointer;
+    transition: background .3s var(--ease), transform .3s var(--ease);
+  }
+
+  .slider-dots .dot:hover {
+    background: rgba(255,255,255,0.6);
+  }
+
+  .slider-dots .dot.active {
+    background: var(--orange-br);
+    transform: scale(1.3);
+  }
    ========================================================================== */
   .monitor {
     background: var(--blue);
@@ -2610,9 +2755,90 @@
         </div>
       </div>
     </div>
+  <!-- ==================== 04 — SEE E-PASS WORK ==================== -->
+  <section class="board" id="s04">
+    <div class="secmark">
+      <span class="num">04</span>
+      <span class="name">See E&#8209;PASS Work</span>
+      <span class="fill"></span>
+      <span class="tag">CASE STUDY &middot; PROTOTYPE DEMONSTRATION</span>
+    </div>
+
+    <div class="board-head">
+      <h2>See E&#8209;PASS Work</h2>
+      <p class="lead">Interactive visual case study demonstration of the E-PASS automated short-circuit test station, R-X<sub>L</sub> impedance control, high-speed acquisition, and AHTA waveform analysis.</p>
+    </div>
+
+    <!-- Image Transition Showcase Slider -->
+    <div class="case-study-slider" id="caseStudySlider">
+      <div class="slider-viewport">
+        <div class="slide active">
+          <img src="case-study/image.png" alt="E-PASS Case Study 1" loading="lazy" />
+          <div class="slide-caption">
+            <span class="slide-num">01 / 07</span>
+            <span class="slide-title">E-PASS Test Bench Setup &amp; Interface</span>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="case-study/image%20copy.png" alt="E-PASS Case Study 2" loading="lazy" />
+          <div class="slide-caption">
+            <span class="slide-num">02 / 07</span>
+            <span class="slide-title">Controlled Fault Circuit &amp; Impedance Configuration</span>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="case-study/image%20copy%202.png" alt="E-PASS Case Study 3" loading="lazy" />
+          <div class="slide-caption">
+            <span class="slide-num">03 / 07</span>
+            <span class="slide-title">Waveform Acquisition &amp; Sensor Calibration</span>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="case-study/image%20copy%203.png" alt="E-PASS Case Study 4" loading="lazy" />
+          <div class="slide-caption">
+            <span class="slide-num">04 / 07</span>
+            <span class="slide-title">AHTA Waveform Analysis &amp; Feature Extraction</span>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="case-study/image%20copy%204.png" alt="E-PASS Case Study 5" loading="lazy" />
+          <div class="slide-caption">
+            <span class="slide-num">05 / 07</span>
+            <span class="slide-title">Short-Circuit Test Execution &amp; Transient Recording</span>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="case-study/image%20copy%205.png" alt="E-PASS Case Study 6" loading="lazy" />
+          <div class="slide-caption">
+            <span class="slide-num">06 / 07</span>
+            <span class="slide-title">IEC 60898-1 Performance Evaluation &amp; Results</span>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="case-study/image%20copy%206.png" alt="E-PASS Case Study 7" loading="lazy" />
+          <div class="slide-caption">
+            <span class="slide-num">07 / 07</span>
+            <span class="slide-title">Digital Test Report &amp; Traceability Verification</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slider Controls -->
+      <button class="slider-btn prev" id="sliderPrev" aria-label="Previous slide">&#10094;</button>
+      <button class="slider-btn next" id="sliderNext" aria-label="Next slide">&#10095;</button>
+
+      <!-- Slider Indicators -->
+      <div class="slider-dots" id="sliderDots">
+        <button class="dot active" data-index="0" aria-label="Slide 1"></button>
+        <button class="dot" data-index="1" aria-label="Slide 2"></button>
+        <button class="dot" data-index="2" aria-label="Slide 3"></button>
+        <button class="dot" data-index="3" aria-label="Slide 4"></button>
+        <button class="dot" data-index="4" aria-label="Slide 5"></button>
+        <button class="dot" data-index="5" aria-label="Slide 6"></button>
+        <button class="dot" data-index="6" aria-label="Slide 7"></button>
+      </div>
+    </div>
   </section>
-
-
 
 </main>
 
@@ -2911,9 +3137,88 @@
     } else if (playbtn) {
       playbtn.addEventListener('click', function () {
         playbtn.textContent = 'NO RECORDING LOADED — SET VIDEO_ID';
-        playbtn.disabled = true;
-        playbtn.style.opacity = '.65';
+    /* ---------- Case Study Image Transition Slider ---------- */
+    (function initCaseStudySlider() {
+      var slider = document.getElementById('caseStudySlider');
+      if (!slider) return;
+
+      var slides = slider.querySelectorAll('.slide');
+      var dots = slider.querySelectorAll('.dot');
+      var prevBtn = document.getElementById('sliderPrev');
+      var nextBtn = document.getElementById('sliderNext');
+      if (!slides.length) return;
+
+      var currentIndex = 0;
+      var timer = null;
+
+      function goToSlide(index) {
+        if (index < 0) index = slides.length - 1;
+        if (index >= slides.length) index = 0;
+
+        slides.forEach(function (s, i) {
+          if (i === index) {
+            s.classList.add('active');
+          } else {
+            s.classList.remove('active');
+          }
+        });
+
+        dots.forEach(function (d, i) {
+          if (i === index) {
+            d.classList.add('active');
+          } else {
+            d.classList.remove('active');
+          }
+        });
+
+        currentIndex = index;
+      }
+
+      function nextSlide() {
+        goToSlide(currentIndex + 1);
+      }
+
+      function prevSlide() {
+        goToSlide(currentIndex - 1);
+      }
+
+      function startAutoPlay() {
+        stopAutoPlay();
+        timer = setInterval(nextSlide, 3500);
+      }
+
+      function stopAutoPlay() {
+        if (timer) clearInterval(timer);
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', function () {
+          prevSlide();
+          startAutoPlay();
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', function () {
+          nextSlide();
+          startAutoPlay();
+        });
+      }
+
+      dots.forEach(function (dot) {
+        dot.addEventListener('click', function () {
+          var idx = parseInt(dot.getAttribute('data-index'), 10);
+          if (!isNaN(idx)) {
+            goToSlide(idx);
+            startAutoPlay();
+          }
+        });
       });
-    }
+
+      slider.addEventListener('mouseenter', stopAutoPlay);
+      slider.addEventListener('mouseleave', startAutoPlay);
+
+      startAutoPlay();
+    })();
   })();
 </script>
