@@ -155,11 +155,10 @@
   }
 
   .intro {
+    display: none !important;
     position: fixed;
     inset: 0;
     z-index: 200;
-    --logo-w: min(430px, 60vw);
-    --logo-half: calc(var(--logo-w) / 2);
   }
 
   .intro.done {
@@ -2422,19 +2421,7 @@
   }
 </style>
 
-<!-- ========================= OPENING TRANSITION ========================= -->
-<div class="intro" id="intro">
-  <div class="intro-half l" aria-hidden="true"><img src="sih-2.jpg" width="450" height="430" alt=""
-      fetchpriority="high"></div>
-  <div class="intro-half r"><img src="sih-2.jpg" width="450" height="430" alt="Smart India Hackathon"
-      fetchpriority="high"></div>
-  <div class="intro-seam" aria-hidden="true"></div>
-  <div class="intro-meta">
-    <span class="intro-line" aria-hidden="true"><i></i></span>
-    <span class="intro-tag">Team E-PASS &middot; Project Showcase</span>
-  </div>
-  <button class="intro-skip" id="introSkip" type="button">SKIP</button>
-</div>
+<!-- OPENING TRANSITION REMOVED TO PREVENT OVERLAY LOCKING -->
 
 <!-- ============================== NAVIGATION ============================== -->
 <header class="rail" id="rail">
