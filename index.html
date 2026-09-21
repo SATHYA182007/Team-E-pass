@@ -3058,6 +3058,11 @@
     } else if (playbtn) {
       playbtn.addEventListener('click', function () {
         playbtn.textContent = 'NO RECORDING LOADED — SET VIDEO_ID';
+        playbtn.disabled = true;
+        playbtn.style.opacity = '.65';
+      });
+    }
+
     /* ---------- Case Study Image Transition Slider ---------- */
     (function initCaseStudySlider() {
       var slider = document.getElementById('caseStudySlider');
