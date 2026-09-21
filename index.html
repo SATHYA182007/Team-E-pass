@@ -1653,66 +1653,9 @@
     color: #fff;
   }
 
-  .slider-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: rgba(15, 28, 46, 0.75);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.2);
-    color: #fff;
-    font-size: 20px;
-    cursor: pointer;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background .25s var(--ease), border-color .25s var(--ease), transform .25s var(--ease);
-  }
-
-  .slider-btn:hover {
-    background: var(--blue);
-    border-color: var(--blue-br);
-    transform: translateY(-50%) scale(1.08);
-  }
-
-  .slider-btn.prev {
-    left: 20px;
-  }
-
-  .slider-btn.next {
-    right: 20px;
-  }
-
+  .slider-btn,
   .slider-dots {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    padding: 16px;
-    background: #060d17;
-  }
-
-  .slider-dots .dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.25);
-    border: none;
-    cursor: pointer;
-    transition: background .3s var(--ease), transform .3s var(--ease);
-  }
-
-  .slider-dots .dot:hover {
-    background: rgba(255,255,255,0.6);
-  }
-
-  .slider-dots .dot.active {
-    background: var(--orange-br);
-    transform: scale(1.3);
+    display: none !important;
   }
    ========================================================================== */
   .monitor {
@@ -2810,20 +2753,6 @@
         </div>
       </div>
 
-      <!-- Slider Controls -->
-      <button class="slider-btn prev" id="sliderPrev" aria-label="Previous slide">&#10094;</button>
-      <button class="slider-btn next" id="sliderNext" aria-label="Next slide">&#10095;</button>
-
-      <!-- Slider Indicators -->
-      <div class="slider-dots" id="sliderDots">
-        <button class="dot active" data-index="0" aria-label="Slide 1"></button>
-        <button class="dot" data-index="1" aria-label="Slide 2"></button>
-        <button class="dot" data-index="2" aria-label="Slide 3"></button>
-        <button class="dot" data-index="3" aria-label="Slide 4"></button>
-        <button class="dot" data-index="4" aria-label="Slide 5"></button>
-        <button class="dot" data-index="5" aria-label="Slide 6"></button>
-        <button class="dot" data-index="6" aria-label="Slide 7"></button>
-      </div>
     </div>
   </section>
 
@@ -3176,39 +3105,12 @@
 
       function startAutoPlay() {
         stopAutoPlay();
-        timer = setInterval(nextSlide, 3500);
+        timer = setInterval(nextSlide, 3000);
       }
 
       function stopAutoPlay() {
         if (timer) clearInterval(timer);
       }
-
-      if (prevBtn) {
-        prevBtn.addEventListener('click', function () {
-          prevSlide();
-          startAutoPlay();
-        });
-      }
-
-      if (nextBtn) {
-        nextBtn.addEventListener('click', function () {
-          nextSlide();
-          startAutoPlay();
-        });
-      }
-
-      dots.forEach(function (dot) {
-        dot.addEventListener('click', function () {
-          var idx = parseInt(dot.getAttribute('data-index'), 10);
-          if (!isNaN(idx)) {
-            goToSlide(idx);
-            startAutoPlay();
-          }
-        });
-      });
-
-      slider.addEventListener('mouseenter', stopAutoPlay);
-      slider.addEventListener('mouseleave', startAutoPlay);
 
       startAutoPlay();
     })();
