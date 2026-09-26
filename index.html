@@ -1578,40 +1578,142 @@
   }
 
   /* ==========================================================================
-   SECTION 04 — SEE E-PASS WORK SLIDER
+   SECTION 04 — SEE E-PASS WORK SHOWCASE
    ========================================================================== */
-  .case-study-slider {
+  .case-study-showcase {
     position: relative;
-    background: var(--navy);
-    border: 1px solid var(--blue-soft);
+    background: #0B1320;
+    border: 1px solid rgba(59, 119, 180, 0.25);
     border-radius: var(--r-xl);
     overflow: hidden;
-    box-shadow: var(--sh-2);
+    box-shadow: 0 12px 40px rgba(15, 32, 51, 0.25), 0 2px 10px rgba(23, 81, 140, 0.1);
     margin-top: var(--s3);
+  }
+
+  .showcase-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 20px;
+    background: rgba(15, 26, 44, 0.95);
+    border-bottom: 1px solid rgba(226, 231, 238, 0.1);
+    backdrop-filter: blur(12px);
+    flex-wrap: wrap;
+  }
+
+  .bar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .live-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    color: #4ADE80;
+    background: rgba(74, 222, 128, 0.12);
+    border: 1px solid rgba(74, 222, 128, 0.25);
+    padding: 4px 10px;
+    border-radius: var(--r-pill);
+  }
+
+  .dot-pulse {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #4ADE80;
+    box-shadow: 0 0 8px #4ADE80;
+    animation: pulse 1.8s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .4; transform: scale(1.3); }
+  }
+
+  .step-badge {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    color: var(--orange-br);
+    background: rgba(240, 138, 52, 0.12);
+    border: 1px solid rgba(240, 138, 52, 0.25);
+    padding: 4px 10px;
+    border-radius: var(--r-pill);
+  }
+
+  .bar-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #FFFFFF;
+    letter-spacing: .01em;
+    text-align: center;
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .bar-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .sc-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #FFFFFF;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: var(--r-sm);
+    cursor: pointer;
+    transition: all .2s var(--ease);
+  }
+
+  .sc-btn:hover {
+    background: var(--blue-mid);
+    border-color: var(--blue-soft);
+    transform: translateY(-1px);
+  }
+
+  .sc-btn.play-btn {
+    padding: 6px 10px;
   }
 
   .slider-viewport {
     position: relative;
     width: 100%;
-    min-height: 480px;
-    background: #09121f;
+    min-height: 420px;
+    max-height: 600px;
+    background: #070D18;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 24px 24px;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    padding: 16px;
   }
 
   .slide {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 16px;
     opacity: 0;
     visibility: hidden;
-    transition: opacity .6s var(--ease), visibility .6s var(--ease), transform .6s var(--ease);
-    transform: scale(0.98);
+    transition: opacity .4s ease, transform .4s ease;
+    transform: scale(0.97);
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
   }
@@ -1621,51 +1723,128 @@
     visibility: visible;
     transform: scale(1);
     position: relative;
+    inset: auto;
+    width: 100%;
+    height: 100%;
   }
 
   .slide img {
     max-width: 100%;
-    max-height: 520px;
+    max-height: 540px;
     width: auto;
     height: auto;
     object-fit: contain;
     border-radius: var(--r-md);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 12px 36px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1);
+    background: #050B14;
   }
 
-  .slide-caption {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgba(9,18,31,0.92) 0%, rgba(9,18,31,0.6) 70%, transparent 100%);
-    padding: 24px 30px 18px;
+  /* Thumbnails Container */
+  .showcase-thumbs {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    padding: 14px;
+    background: #09111D;
+    border-top: 1px solid rgba(226, 231, 238, 0.08);
+  }
+
+  .thumb-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--r-sm);
+    padding: 6px;
+    cursor: pointer;
+    text-align: left;
+    transition: all .2s var(--ease);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .thumb-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(240, 138, 52, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .thumb-card.active {
+    background: rgba(240, 138, 52, 0.12);
+    border-color: var(--orange-br);
+    box-shadow: 0 0 12px rgba(240, 138, 52, 0.25);
+  }
+
+  .thumb-img-wrap {
+    width: 100%;
+    height: 48px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .thumb-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: .75;
+    transition: opacity .2s;
+  }
+
+  .thumb-card:hover .thumb-img-wrap img,
+  .thumb-card.active .thumb-img-wrap img {
+    opacity: 1;
+  }
+
+  .thumb-info {
     display: flex;
     align-items: center;
-    gap: 16px;
-    color: #fff;
+    gap: 6px;
   }
 
-  .slide-num {
+  .thumb-num {
     font-family: "IBM Plex Mono", monospace;
-    font-size: 11px;
-    letter-spacing: .12em;
+    font-size: 9.5px;
+    font-weight: 700;
     color: var(--orange-br);
-    background: rgba(255,255,255,0.1);
-    padding: 3px 10px;
-    border-radius: var(--r-pill);
+    background: rgba(0,0,0,0.3);
+    padding: 1px 5px;
+    border-radius: 3px;
   }
 
-  .slide-title {
-    font-size: 15px;
+  .thumb-lbl {
+    font-size: 10px;
     font-weight: 500;
-    letter-spacing: .02em;
-    color: #fff;
+    color: #CBD5E1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  .slider-btn,
-  .slider-dots {
-    display: none !important;
+  .thumb-card.active .thumb-lbl {
+    color: #FFFFFF;
+    font-weight: 600;
+  }
+
+  @media (max-width: 960px) {
+    .showcase-thumbs {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .showcase-thumbs {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 18px;
+    }
+    .thumb-card {
+      min-width: 120px;
+      scroll-snap-align: start;
+    }
+    .slider-viewport {
+      min-height: 280px;
+    }
   }
    ========================================================================== */
   .monitor {
@@ -2707,58 +2886,107 @@
       <p class="lead">Interactive visual case study demonstration of the E-PASS automated short-circuit test station, R-X<sub>L</sub> impedance control, high-speed acquisition, and AHTA waveform analysis.</p>
     </div>
 
-    <!-- Image Transition Showcase Slider -->
-    <div class="case-study-slider" id="caseStudySlider">
+    <!-- Interactive Engineering Visual Showcase Stage -->
+    <div class="case-study-showcase" id="caseStudySlider">
+
+      <!-- Top Navigation Control Bar -->
+      <div class="showcase-bar">
+        <div class="bar-left">
+          <span class="live-pill"><span class="dot-pulse"></span> PROTOTYPE DEMO</span>
+          <span class="step-badge" id="showcaseStepBadge">STEP 01 / 07</span>
+        </div>
+        <div class="bar-title" id="showcaseTitle">E-PASS Test Bench Setup &amp; Interface</div>
+        <div class="bar-controls">
+          <button type="button" class="sc-btn" id="sliderPrev" title="Previous Step">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+            Prev
+          </button>
+          <button type="button" class="sc-btn play-btn" id="sliderPlay" title="Pause / Auto-Play">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+          </button>
+          <button type="button" class="sc-btn" id="sliderNext" title="Next Step">
+            Next
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Stage Viewport -->
       <div class="slider-viewport">
         <div class="slide active">
-          <img src="case-study/image.png" alt="E-PASS Case Study 1" loading="lazy" />
-          <div class="slide-caption">
-            <span class="slide-num">01 / 07</span>
-            <span class="slide-title">E-PASS Test Bench Setup &amp; Interface</span>
-          </div>
+          <img src="case-study/slide-1.jpg" alt="E-PASS Case Study 1" loading="eager" />
         </div>
         <div class="slide">
-          <img src="case-study/image%20copy.png" alt="E-PASS Case Study 2" loading="lazy" />
-          <div class="slide-caption">
-            <span class="slide-num">02 / 07</span>
-            <span class="slide-title">Controlled Fault Circuit &amp; Impedance Configuration</span>
-          </div>
+          <img src="case-study/slide-2.jpg" alt="E-PASS Case Study 2" loading="lazy" />
         </div>
         <div class="slide">
-          <img src="case-study/image%20copy%202.png" alt="E-PASS Case Study 3" loading="lazy" />
-          <div class="slide-caption">
-            <span class="slide-num">03 / 07</span>
-            <span class="slide-title">Waveform Acquisition &amp; Sensor Calibration</span>
-          </div>
+          <img src="case-study/slide-3.jpg" alt="E-PASS Case Study 3" loading="lazy" />
         </div>
         <div class="slide">
-          <img src="case-study/image%20copy%203.png" alt="E-PASS Case Study 4" loading="lazy" />
-          <div class="slide-caption">
-            <span class="slide-num">04 / 07</span>
-            <span class="slide-title">AHTA Waveform Analysis &amp; Feature Extraction</span>
-          </div>
+          <img src="case-study/slide-4.jpg" alt="E-PASS Case Study 4" loading="lazy" />
         </div>
         <div class="slide">
-          <img src="case-study/image%20copy%204.png" alt="E-PASS Case Study 5" loading="lazy" />
-          <div class="slide-caption">
-            <span class="slide-num">05 / 07</span>
-            <span class="slide-title">Short-Circuit Test Execution &amp; Transient Recording</span>
-          </div>
+          <img src="case-study/slide-5.jpg" alt="E-PASS Case Study 5" loading="lazy" />
         </div>
         <div class="slide">
-          <img src="case-study/image%20copy%205.png" alt="E-PASS Case Study 6" loading="lazy" />
-          <div class="slide-caption">
-            <span class="slide-num">06 / 07</span>
-            <span class="slide-title">IEC 60898-1 Performance Evaluation &amp; Results</span>
-          </div>
+          <img src="case-study/slide-6.jpg" alt="E-PASS Case Study 6" loading="lazy" />
         </div>
         <div class="slide">
-          <img src="case-study/image%20copy%206.png" alt="E-PASS Case Study 7" loading="lazy" />
-          <div class="slide-caption">
-            <span class="slide-num">07 / 07</span>
-            <span class="slide-title">Digital Test Report &amp; Traceability Verification</span>
-          </div>
+          <img src="case-study/slide-7.jpg" alt="E-PASS Case Study 7" loading="lazy" />
         </div>
+      </div>
+
+      <!-- Interactive Thumbnail Grid Below -->
+      <div class="showcase-thumbs">
+        <button type="button" class="thumb-card active" data-index="0">
+          <div class="thumb-img-wrap"><img src="case-study/slide-1.jpg" alt="Step 1" /></div>
+          <div class="thumb-info">
+            <span class="thumb-num">01</span>
+            <span class="thumb-lbl">Test Bench Setup</span>
+          </div>
+        </button>
+        <button type="button" class="thumb-card" data-index="1">
+          <div class="thumb-img-wrap"><img src="case-study/slide-2.jpg" alt="Step 2" /></div>
+          <div class="thumb-info">
+            <span class="thumb-num">02</span>
+            <span class="thumb-lbl">Impedance Circuit</span>
+          </div>
+        </button>
+        <button type="button" class="thumb-card" data-index="2">
+          <div class="thumb-img-wrap"><img src="case-study/slide-3.jpg" alt="Step 3" /></div>
+          <div class="thumb-info">
+            <span class="thumb-num">03</span>
+            <span class="thumb-lbl">Acquisition Path</span>
+          </div>
+        </button>
+        <button type="button" class="thumb-card" data-index="3">
+          <div class="thumb-img-wrap"><img src="case-study/slide-4.jpg" alt="Step 4" /></div>
+          <div class="thumb-info">
+            <span class="thumb-num">04</span>
+            <span class="thumb-lbl">AHTA Analysis</span>
+          </div>
+        </button>
+        <button type="button" class="thumb-card" data-index="4">
+          <div class="thumb-img-wrap"><img src="case-study/slide-5.jpg" alt="Step 5" /></div>
+          <div class="thumb-info">
+            <span class="thumb-num">05</span>
+            <span class="thumb-lbl">Fault Execution</span>
+          </div>
+        </button>
+        <button type="button" class="thumb-card" data-index="5">
+          <div class="thumb-img-wrap"><img src="case-study/slide-6.jpg" alt="Step 6" /></div>
+          <div class="thumb-info">
+            <span class="thumb-num">06</span>
+            <span class="thumb-lbl">IEC Evaluation</span>
+          </div>
+        </button>
+        <button type="button" class="thumb-card" data-index="6">
+          <div class="thumb-img-wrap"><img src="case-study/slide-7.jpg" alt="Step 7" /></div>
+          <div class="thumb-info">
+            <span class="thumb-num">07</span>
+            <span class="thumb-lbl">Digital Report</span>
+          </div>
+        </button>
       </div>
 
     </div>
@@ -3071,18 +3299,33 @@
       });
     }
 
-    /* ---------- Case Study Image Transition Slider ---------- */
-    (function initCaseStudySlider() {
+    /* ---------- Case Study Engineering Showcase ---------- */
+    (function initCaseStudyShowcase() {
       var slider = document.getElementById('caseStudySlider');
       if (!slider) return;
 
       var slides = slider.querySelectorAll('.slide');
-      var dots = slider.querySelectorAll('.dot');
+      var thumbs = slider.querySelectorAll('.thumb-card');
       var prevBtn = document.getElementById('sliderPrev');
       var nextBtn = document.getElementById('sliderNext');
+      var playBtn = document.getElementById('sliderPlay');
+      var stepBadge = document.getElementById('showcaseStepBadge');
+      var titleElem = document.getElementById('showcaseTitle');
+
       if (!slides.length) return;
 
+      var titles = [
+        "E-PASS Test Bench Setup & Interface",
+        "Controlled Fault Circuit & Impedance Configuration",
+        "Waveform Acquisition & Sensor Calibration",
+        "AHTA Waveform Analysis & Feature Extraction",
+        "Short-Circuit Test Execution & Transient Recording",
+        "IEC 60898-1 Performance Evaluation & Results",
+        "Digital Test Report & Traceability Verification"
+      ];
+
       var currentIndex = 0;
+      var isPlaying = true;
       var timer = null;
 
       function goToSlide(index) {
@@ -3097,13 +3340,23 @@
           }
         });
 
-        dots.forEach(function (d, i) {
+        thumbs.forEach(function (t, i) {
           if (i === index) {
-            d.classList.add('active');
+            t.classList.add('active');
+            if (t.scrollIntoView) {
+              t.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
           } else {
-            d.classList.remove('active');
+            t.classList.remove('active');
           }
         });
+
+        if (stepBadge) {
+          stepBadge.textContent = 'STEP ' + String(index + 1).padStart(2, '0') + ' / 07';
+        }
+        if (titleElem && titles[index]) {
+          titleElem.textContent = titles[index];
+        }
 
         currentIndex = index;
       }
@@ -3118,12 +3371,72 @@
 
       function startAutoPlay() {
         stopAutoPlay();
-        timer = setInterval(nextSlide, 3000);
+        isPlaying = true;
+        updatePlayBtn();
+        timer = setInterval(nextSlide, 4500);
       }
 
       function stopAutoPlay() {
-        if (timer) clearInterval(timer);
+        isPlaying = false;
+        updatePlayBtn();
+        if (timer) {
+          clearInterval(timer);
+          timer = null;
+        }
       }
+
+      function updatePlayBtn() {
+        if (!playBtn) return;
+        if (isPlaying) {
+          playBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
+          playBtn.setAttribute('title', 'Pause Showcase');
+        } else {
+          playBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
+          playBtn.setAttribute('title', 'Play Showcase');
+        }
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', function () {
+          prevSlide();
+          stopAutoPlay();
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', function () {
+          nextSlide();
+          stopAutoPlay();
+        });
+      }
+
+      if (playBtn) {
+        playBtn.addEventListener('click', function () {
+          if (isPlaying) {
+            stopAutoPlay();
+          } else {
+            startAutoPlay();
+          }
+        });
+      }
+
+      thumbs.forEach(function (thumb) {
+        thumb.addEventListener('click', function () {
+          var idx = parseInt(this.getAttribute('data-index'), 10);
+          if (!isNaN(idx)) {
+            goToSlide(idx);
+            stopAutoPlay();
+          }
+        });
+      });
+
+      slider.addEventListener('mouseenter', function () {
+        if (timer) clearInterval(timer);
+      });
+
+      slider.addEventListener('mouseleave', function () {
+        if (isPlaying) startAutoPlay();
+      });
 
       startAutoPlay();
     })();
