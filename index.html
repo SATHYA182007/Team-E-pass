@@ -3306,6 +3306,7 @@
 
       var slides = slider.querySelectorAll('.slide');
       var thumbs = slider.querySelectorAll('.thumb-card');
+      var thumbsContainer = slider.querySelector('.showcase-thumbs');
       var prevBtn = document.getElementById('sliderPrev');
       var nextBtn = document.getElementById('sliderNext');
       var playBtn = document.getElementById('sliderPlay');
@@ -3343,8 +3344,14 @@
         thumbs.forEach(function (t, i) {
           if (i === index) {
             t.classList.add('active');
-            if (t.scrollIntoView) {
-              t.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            if (thumbsContainer) {
+              var containerWidth = thumbsContainer.clientWidth;
+              var thumbLeft = t.offsetLeft;
+              var thumbWidth = t.offsetWidth;
+              thumbsContainer.scrollTo({
+                left: thumbLeft - (containerWidth / 2) + (thumbWidth / 2),
+                behavior: 'smooth'
+              });
             }
           } else {
             t.classList.remove('active');
